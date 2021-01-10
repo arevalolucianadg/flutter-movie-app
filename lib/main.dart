@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'src/pages/home_page.dart';
-import 'src/theme/ui_const.dart';
+import 'package:movie_app/src/routes/routes.dart';
+
+import 'package:movie_app/src/pages/home_page.dart';
+import 'package:movie_app/src/theme/ui_const.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,8 +16,9 @@ class MyApp extends StatelessWidget {
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
       title: 'Movie App',
+      initialRoute: '/',
+      routes: getRoutes(),
     );
     
   }

@@ -16,40 +16,32 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        actions: <Widget> [
+          IconButton(
+            icon: Icon( Icons.search ),
+            onPressed: () {},
+          ),
+        ],
         backgroundColor: mainDarkColor,
-        title: Text('FLUTT Movies'),
+        centerTitle: false,
+        title: Text('Movies'),
       ),
       backgroundColor: bgColor,
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.all(16.0),
-          child: Container(
-            child: Column(
-              children: <Widget> [
-                Center(
-                  child: Text('Popular Series', style: _title),
-                ),
-                Container(
-                  height: 700,
-                  child: Padding(
-                    padding: EdgeInsets.all(16.0),
-                    child: ListView(
-                      children: <Widget>[
-                        MovieItem('/wHa6KOJAoNTFLFtp7wguUJKSnju.jpg', 'The Flash', '7.6'),
-                        MovieItem('/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg', 'The Mandalorian', '8.5'),
-                        MovieItem('/7WTsnHkbA0FaG6R9twfFde0I9hl.jpg', 'Sherlock', '8.4'),
-                        SizedBox(height:40),
-                      ],
-                    )
-                  ),
-                  )
-              ]
-            ),
+      body: SafeArea(
+        child: Container(
+          child: Column(
+            children: <Widget> [
+              _swiperCards(),
+            ],
           ),
         ),
       ),
     );
     
+  }
+
+  Widget _swiperCards() {
+    return Container();
   }
 
 }
