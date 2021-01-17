@@ -20,11 +20,11 @@ class HomePage extends StatelessWidget {
             onPressed: () {},
           ),
         ],
-        backgroundColor: mainDarkColor,
+        backgroundColor: backgroundColor,
         centerTitle: false,
         title: Text('Movies'),
       ),
-      backgroundColor: bgColor,
+      backgroundColor: backgroundColor,
       body: SafeArea(
         child: Container(
           child: Column(
