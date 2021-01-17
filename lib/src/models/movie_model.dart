@@ -1,20 +1,16 @@
 class Movies {
-
   List<Movie> items = new List();
 
   Movies();
 
-  Movies.FromJsonList( List<dynamic> jsonList ) {
+  Movies.fromJsonList(List<dynamic> jsonList) {
+    if (jsonList == null) return;
 
-    if( jsonList == null ) return;
-
-    for( var item in jsonList ) {
-      final movie = new Movie.FromJsonMap( item );
-      items.add( item );
+    for (var item in jsonList) {
+      final movie = new Movie.fromJsonMap(item);
+      items.add(movie);
     }
-
-  };
-
+  }
 }
 
 class Movie {
@@ -51,20 +47,21 @@ class Movie {
   });
 
   // nuevo constructor
-  Movie.fromJsonMap( Map<string, dynamic> json ) {
-    adult            = json['adult'];
-    backdropPath     = json['backdrop_path'];
-    genreIds         = json['genre_ids'].cast<int>();
-    id               = json['id'];
+  Movie.fromJsonMap(Map<String, dynamic> json) {
+    adult = json['adult'];
+    backdropPath = json['backdrop_path'];
+    genreIds = json['genre_ids'].cast<int>();
+    id = json['id'];
     originalLanguage = json['original_language'];
-    originalTitle    = json['original_title'];
-    overview         = json['overview'];
-    popularity       = json['popularity'] / 1;
-    posterPath       = json['poster_path'];
-    releaseDate      = json['release_date'];
-    title            = json['title'];
-    video            = json['video'];
-    voteAverage      = json['vote_average'] / 1; // podemos recibir un double (float) o un int, por eso lo dividimos por 1, para obtener un double y que coincida con el modelo definido.
-    voteCount        = json['vote_count'];
-  };
+    originalTitle = json['original_title'];
+    overview = json['overview'];
+    popularity = json['popularity'] / 1;
+    posterPath = json['poster_path'];
+    releaseDate = json['release_date'];
+    title = json['title'];
+    video = json['video'];
+    voteAverage = json['vote_average'] /
+        1; // podemos recibir un double (float) o un int, por eso lo dividimos por 1, para obtener un double y que coincida con el modelo definido.
+    voteCount = json['vote_count'];
+  }
 }
