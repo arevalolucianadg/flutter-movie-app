@@ -64,4 +64,8 @@ class Movie {
         1; // podemos recibir un double (float) o un int, por eso lo dividimos por 1, para obtener un double y que coincida con el modelo definido.
     voteCount = json['vote_count'];
   }
+
+  getMoviePoster() {
+    return 'https://image.tmdb.org/t/p/w500$posterPath';
+  }
 }

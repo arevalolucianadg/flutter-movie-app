@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'package:movie_app/src/providers/movies_provider.dart';
 import 'package:movie_app/src/widgets/card_swiper_widget.dart';
 import '../theme/ui_const.dart';
 
@@ -9,6 +10,8 @@ class HomePage extends StatelessWidget {
     fontSize: 24,
     fontWeight: FontWeight.bold,
   );
+
+  final moviesProvider = new MoviesProvider();
 
   @override
   Widget build(context) {
@@ -29,6 +32,13 @@ class HomePage extends StatelessWidget {
         child: Container(
           child: Column(
             children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.fromLTRB(0, 32.0, 0, 8.0),
+                child: Text(
+                  'Popular movies',
+                  style: _title,
+                ),
+              ),
               _swiperCards(),
             ],
           ),
@@ -38,6 +48,15 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _swiperCards() {
-    return CardSwiper(movies: [1, 2, 3, 4, 5]);
+    return FutureBuilder(
+        future: moviesProvider.getPopularMovies(),
+        builder: (BuildContext context, AsyncSnapshot snapshot) {
+          if (snapshot.hasData) {
+            return CardSwiper(movies: snapshot.data);
+          } else {
+            return Container(
+                height: 450, child: Center(child: CircularProgressIndicator()));
+          }
+        });
   }
 }
