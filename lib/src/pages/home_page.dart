@@ -40,6 +40,7 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               _swiperCards(),
+              _homeFooter()
             ],
           ),
         ),
@@ -50,7 +51,7 @@ class HomePage extends StatelessWidget {
   Widget _swiperCards() {
     return FutureBuilder(
         future: moviesProvider.getPopularMovies(),
-        builder: (BuildContext context, AsyncSnapshot snapshot) {
+        builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
           if (snapshot.hasData) {
             return CardSwiper(movies: snapshot.data);
           } else {
@@ -58,5 +59,33 @@ class HomePage extends StatelessWidget {
                 height: 450, child: Center(child: CircularProgressIndicator()));
           }
         });
+  }
+
+  Widget _homeFooter() {
+    moviesProvider.getTopRatedMovies();
+
+    return Container(
+      child: Column(
+        children: <Widget>[
+          Text('Top Rated movies', style: _title),
+          FutureBuilder(
+            future: moviesProvider.getTopRatedMovies(),
+            builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+              if (snapshot.hasData) {
+                snapshot.data.forEach((p) {
+                  print(p.title);
+                });
+              } else {
+                return Container(
+                    height: 450,
+                    child: Center(child: CircularProgressIndicator()));
+              }
+            },
+          ),
+        ],
+      ),
+      padding: EdgeInsets.fromLTRB(0, 32.0, 0, 8.0),
+      width: double.infinity,
+    );
   }
 }
